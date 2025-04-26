@@ -15,7 +15,7 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name",length = 255,nullable = false)
+    @Column(name = "nome",length = 255,nullable = false)
     private String nome;
 
     @Column(name = "email",length = 255,nullable = false)
@@ -24,7 +24,7 @@ public class Client {
     @Column(name = "cpf",nullable = false)
     private BigInteger cpf;
 
-    @Column(name = "number", nullable = false)
-    private String number;
+    @Column(name = "numero", nullable = false)
+    private String numero;
 
 }
