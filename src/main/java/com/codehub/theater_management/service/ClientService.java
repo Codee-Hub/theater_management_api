@@ -17,7 +17,7 @@ public class ClientService {
         return repository.save(client);
     }
 
-    public List<Client> salvar(List<Client> clients) {
+    public List<Client> listar(List<Client> clients) {
         return repository.saveAll(clients);
     }
 
