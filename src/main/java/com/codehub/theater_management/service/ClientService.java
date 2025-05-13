@@ -18,7 +18,7 @@ public class ClientService {
     }
 
     public List<Client> listar(List<Client> clients) {
-        return repository.saveAll(clients);
+        return repository.findAll();
     }
 
 }

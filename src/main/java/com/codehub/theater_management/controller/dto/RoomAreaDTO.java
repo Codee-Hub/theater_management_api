@@ -1,14 +1,15 @@
 package com.codehub.theater_management.controller.dto;
 
+import com.codehub.theater_management.model.Room;
 import lombok.Data;
 
 @Data
-public class RoomDTO {
+public class RoomAreaDTO {
 
     private Long id;
-    private Integer roomNumber;
+    private String nomeArea;
     private Integer capacity;
-    private Long idTheater;
+    private Long idRoom;
 
 
 }
