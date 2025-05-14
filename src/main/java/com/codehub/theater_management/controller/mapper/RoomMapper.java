@@ -7,11 +7,20 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface RoomMapper {
+    default RoomDTO toDTO(Room room) {
+        RoomDTO dto = new RoomDTO();
+        dto.setId(room.getId());
+        dto.setRoomNumber(room.getRoomNumber());
+        dto.setCapacity(room.getCapacity());
 
-    @Mapping(source = "theater.id", target = "idTheater")
-    RoomDTO toDTO(Room room);
-
+        if (room.getTheater() != null){
+            dto.setIdTheater(room.getTheater().getId());
+        }
+        return dto;
+    }
     @Mapping(target = "theater", ignore = true)
-    Room toEntity(RoomDTO dto);
+    default Room toEntity(RoomDTO dto) {
+        return null;
+    }
 
 }

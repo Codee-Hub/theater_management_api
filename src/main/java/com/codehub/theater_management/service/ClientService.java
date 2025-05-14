@@ -21,4 +21,9 @@ public class ClientService {
         return repository.findAll();
     }
 
+    public Client deletar(Client client) {
+        repository.delete(client);
+        return client;
+    }
+
 }

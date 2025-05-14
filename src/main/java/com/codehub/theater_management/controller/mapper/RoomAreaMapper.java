@@ -1,8 +1,6 @@
 package com.codehub.theater_management.controller.mapper;
 
 import com.codehub.theater_management.controller.dto.RoomAreaDTO;
-import com.codehub.theater_management.controller.dto.RoomDTO;
-import com.codehub.theater_management.model.Room;
 import com.codehub.theater_management.model.RoomArea;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -23,7 +21,9 @@ public interface RoomAreaMapper {
     }
 
     @Mapping(target = "room", ignore = true)
-    RoomArea toEntity(RoomAreaDTO dto);
+    default RoomArea toEntity(RoomAreaDTO dto) {
+        return null;
+    }
 
 }
 

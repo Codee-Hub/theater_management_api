@@ -4,6 +4,7 @@ import com.codehub.theater_management.controller.dto.RoomAreaDTO;
 import com.codehub.theater_management.model.Room;
 import com.codehub.theater_management.model.RoomArea;
 import com.codehub.theater_management.repository.RoomAreaRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +35,9 @@ public class RoomAreaService {
         return repository.findAll();
     }
 
+    public RoomArea findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("RoomArea not found with id: " + id));
+    }
 
 }

@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @Table(name = "room_area")
@@ -24,9 +27,14 @@ public class RoomArea {
     @JsonIgnore
     private Room room;
 
-    public Room getRoom() {
-        return this.room;
+    @OneToMany(mappedBy = "roomArea", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Armchair> armchairs = new ArrayList<>();
+
+    public RoomArea(Room room) {
+        this.room = room;
     }
 
+    public RoomArea() {
 
+    }
 }
