@@ -37,10 +37,6 @@ public class ArmchairController {
         return ResponseEntity.ok(armchairs);
     }
 
-//    @GetMapping
-//    public List<RoomAreaDTO> listar() {
-//        return service.listar();
-//    }
 
 
 }

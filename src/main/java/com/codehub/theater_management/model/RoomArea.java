@@ -16,10 +16,10 @@ public class RoomArea {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome_area")
+    @Column(name = "nome_area", nullable = false)
     private String nomeArea;
 
-    @Column(name = "capacity")
+    @Column(name = "capacity", nullable = false)
     private Integer capacity;
 
     @ManyToOne

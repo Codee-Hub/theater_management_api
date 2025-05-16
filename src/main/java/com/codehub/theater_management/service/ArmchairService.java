@@ -39,7 +39,7 @@ public class ArmchairService {
         return armchairMapper.toDTO(saved);
     }
 
-    public @NotNull List<ArmchairDTO> listar() {
+    public List<ArmchairDTO> listar() {
         return repository.findAll()
                 .stream()
                 .map(ArmchairDTO::new) // Supondo que ArmchairDTO tem um construtor que aceita Armchair

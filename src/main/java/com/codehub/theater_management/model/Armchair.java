@@ -10,11 +10,11 @@ import lombok.Data;
 public class Armchair {
 
     @Id
-    @Column(name = "id_armchair")
+    @Column(name = "id_armchair",  nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "numero")
+    @Column(name = "numero", nullable = false)
     private Integer numero;
 
     @ManyToOne
