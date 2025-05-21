@@ -14,7 +14,6 @@ public class PersonTypeController {
     @Autowired
     public PersonTypeRepository repository;
 
-
     @PostMapping
     public PersonType salvar(@RequestBody PersonType personType) {
         return repository.save(personType);

@@ -5,8 +5,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Timestamp;
-import java.time.Duration;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -30,6 +31,8 @@ public class Spectacle {
     @JsonIgnore
     private Room room;
 
+    @OneToMany(mappedBy = "spectacle" , cascade = CascadeType.ALL, orphanRemoval = true)
+    List<TicketPrice> ticketPrices =  new ArrayList<>();
 
 
 }

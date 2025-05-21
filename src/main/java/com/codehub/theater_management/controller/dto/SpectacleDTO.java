@@ -5,8 +5,6 @@ import com.codehub.theater_management.model.Spectacle;
 import lombok.Data;
 
 import java.sql.Timestamp;
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 

@@ -19,5 +19,7 @@ public interface ArmchairMapper {
     }
 
     @Mapping(target = "roomArea", ignore = true)
-    Armchair toEntity(ArmchairDTO dto);
+    default Armchair toEntity(ArmchairDTO dto){
+        return  null;
+    }
 }

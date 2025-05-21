@@ -1,5 +1,6 @@
 package com.codehub.theater_management.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,14 +13,21 @@ public class TicketPrice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "price")
+    private Double price;
+
+    @ManyToOne
+    @JoinColumn(name = "id_person_type", nullable = false)
+    @JsonIgnore
+    private PersonType personType;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_spectacle")
+    @JsonIgnore
+    @JoinColumn(name = "id_spectacle", nullable = false)
     private Spectacle spectacle;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_person_type")
-    private PersonType personType;
+
+
 
 
 

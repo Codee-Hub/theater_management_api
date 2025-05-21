@@ -43,7 +43,7 @@ public class SpectacleService {
     public List<SpectacleDTO> listar(){
         return repository.findAll()
                 .stream()
-                .map(SpectacleDTO::new) // Supondo que ArmchairDTO tem um construtor que aceita Armchair
+                .map(SpectacleDTO::new)
                 .collect(Collectors.toList());
     }
 
