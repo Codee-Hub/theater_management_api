@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "ticket_price")
 @Data
@@ -26,9 +29,9 @@ public class TicketPrice {
     @JoinColumn(name = "id_spectacle", nullable = false)
     private Spectacle spectacle;
 
-
-
-
+    @OneToMany(mappedBy = "ticketPrice", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Ticket> tickets = new ArrayList<>();
 
 
 

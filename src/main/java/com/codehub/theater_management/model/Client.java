@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "client")
@@ -26,5 +28,8 @@ public class Client {
 
     @Column(name = "numero", nullable = false)
     private String numero;
+
+    @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Ticket> tickets = new ArrayList<>();
 
 }

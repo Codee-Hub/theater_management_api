@@ -34,5 +34,7 @@ public class Spectacle {
     @OneToMany(mappedBy = "spectacle" , cascade = CascadeType.ALL, orphanRemoval = true)
     List<TicketPrice> ticketPrices =  new ArrayList<>();
 
+    @OneToMany(mappedBy = "spectacle" , cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Ticket>  tickets = new ArrayList<>();
 
 }
