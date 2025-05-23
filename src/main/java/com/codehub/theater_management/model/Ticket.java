@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "ticket")
 @Data
@@ -32,5 +35,8 @@ public class Ticket {
     @JsonIgnore
     @JoinColumn(name = "id_ticket_price", nullable = false)
     private TicketPrice ticketPrice;
+
+    @OneToMany(mappedBy = "ticket" , cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Payment>  payments =  new ArrayList<>();
 
 }
