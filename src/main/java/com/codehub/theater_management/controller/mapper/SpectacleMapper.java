@@ -3,6 +3,7 @@ package com.codehub.theater_management.controller.mapper;
 
 import com.codehub.theater_management.controller.dto.RoomDTO;
 import com.codehub.theater_management.controller.dto.SpectacleDTO;
+import com.codehub.theater_management.model.Room;
 import com.codehub.theater_management.model.Spectacle;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -21,7 +22,23 @@ public interface SpectacleMapper {
         return dto;
     }
 
-    @Mapping(target = "room", ignore = true) // O campo será setado manualmente no service
-    Spectacle toEntity(SpectacleDTO dto);
+
+    default Spectacle toEntity(SpectacleDTO dto){
+        if (dto == null){
+            return null;
+        }
+
+        Spectacle spectacle = new Spectacle();
+        spectacle.setId(dto.getId());
+        spectacle.setDate(dto.getDate());
+        spectacle.setDuration(dto.getDuration());
+
+        if (dto.getIdRoom() != null){
+            Room room = new Room();
+            room.setId(dto.getIdRoom());
+            spectacle.setRoom(room);
+        }
+        return spectacle;
+    }
 }
 
