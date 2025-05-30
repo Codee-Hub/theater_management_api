@@ -29,12 +29,6 @@ public class TicketService {
                 .getContent();
     }
 
-//    public List<TicketDTO> listar() {
-//        return repository.findAll()
-//                .stream()
-//                .map(mapper::toDTO)
-//                .collect(Collectors.toList());
-//    }
 
     public Ticket buscarPorId(Long id) {
         return repository.findById(id).orElse(null);

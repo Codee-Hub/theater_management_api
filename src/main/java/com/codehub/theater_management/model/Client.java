@@ -37,18 +37,5 @@ public class Client {
     @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL, orphanRemoval = true)
     List<Ticket> tickets = new ArrayList<>();
 
-    // --- CAMPOS ADICIONADOS/MODIFICADOS PARA SPRING SECURITY COM ENUM ---
-    @Column(name = "password")
-    private String password; // Senha hasheada. Não nula para quem pode logar.
-
-    @Column(name = "enabled")
-    private boolean enabled = true;
-
-    @Enumerated(EnumType.STRING) // Persiste o Enum como String (ex: "ROLE_ADMIN")
-    @Column(name = "role", nullable = false)
-    private UserRole role; // Armazena o cargo do cliente
-    // --- FIM DOS CAMPOS ADICIONADOS/MODIFICADOS ---
-
-    // Construtor padrão e outros getters/setters são gerenciados pelo @Data do Lombok
 
 }
