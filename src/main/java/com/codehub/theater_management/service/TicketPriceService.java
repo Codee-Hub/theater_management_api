@@ -36,7 +36,6 @@ public class TicketPriceService {
 
         TicketPrice saved = repository.save(ticketPrice);
 
-
         return mapper.toDTO(saved);
 
     }
@@ -53,6 +52,5 @@ public class TicketPriceService {
         repository.delete(ticketPrice);
         return ticketPrice;
     }
-
 
 }

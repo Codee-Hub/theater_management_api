@@ -29,6 +29,10 @@ public class Client {
     @Column(name = "numero", nullable = false)
     private String numero;
 
+    private String senha;
+
+    private String role; // valores: "ADMIN" ou "USER"
+
     @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL, orphanRemoval = true)
     List<Ticket> tickets = new ArrayList<>();
 

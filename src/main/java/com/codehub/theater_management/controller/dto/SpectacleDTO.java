@@ -14,6 +14,7 @@ public class SpectacleDTO {
     private Long id;
     private Timestamp date;
     private LocalTime duration;
+    private String nome;
     private Long idRoom;
 
 
@@ -24,6 +25,7 @@ public class SpectacleDTO {
     public SpectacleDTO(Spectacle spectacle) {
         this.id = spectacle.getId();
         this.date = spectacle.getDate();
+        this.nome = spectacle.getNome();
         this.duration = spectacle.getDuration();
         if (spectacle.getRoom() != null) {
             this.idRoom = spectacle.getRoom().getId();

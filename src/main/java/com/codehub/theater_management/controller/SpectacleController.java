@@ -35,7 +35,7 @@ public class SpectacleController {
 
     @GetMapping
     public ResponseEntity<List<SpectacleDTO>> listarTodos() {
-        List<SpectacleDTO> spectacles = service.listar();
+        List<SpectacleDTO> spectacles = service.listar().subList(0, 100);
         return ResponseEntity.ok(spectacles);
     }
 
@@ -45,7 +45,6 @@ public class SpectacleController {
         repository.delete(spectacle);
         return spectacle;
     }
-
 
 
 }

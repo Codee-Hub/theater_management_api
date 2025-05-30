@@ -20,21 +20,28 @@ public class Spectacle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "data_time", unique = true)
+    @Column(name = "data_time")
     private Timestamp date;
 
-    @Column(name = "duration", unique = true)
+    @Column(name = "duration")
     private LocalTime  duration;
+
+    private String nome;
+
 
     @ManyToOne
     @JoinColumn(name = "id_room", nullable = false)
     @JsonIgnore
     private Room room;
 
+
+
     @OneToMany(mappedBy = "spectacle" , cascade = CascadeType.ALL, orphanRemoval = true)
     List<TicketPrice> ticketPrices =  new ArrayList<>();
 
     @OneToMany(mappedBy = "spectacle" , cascade = CascadeType.ALL, orphanRemoval = true)
     List<Ticket>  tickets = new ArrayList<>();
+
+
 
 }
