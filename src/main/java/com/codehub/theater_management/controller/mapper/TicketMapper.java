@@ -5,8 +5,8 @@ import com.codehub.theater_management.model.*;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public class TicketMapper {
-    public TicketDTO toDTO(Ticket entity){
+public interface TicketMapper {
+    default TicketDTO toDTO(Ticket entity){
         TicketDTO dto = new TicketDTO();
         dto.setId(entity.getId());
 
@@ -20,7 +20,7 @@ public class TicketMapper {
         return dto;
     }
 
-    public Ticket toEntity(TicketDTO dto){
+    default Ticket toEntity(TicketDTO dto){
         if (dto == null) {
             return null;
         }
