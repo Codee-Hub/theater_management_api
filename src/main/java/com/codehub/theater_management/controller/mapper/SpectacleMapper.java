@@ -1,12 +1,9 @@
 package com.codehub.theater_management.controller.mapper;
 
-
-import com.codehub.theater_management.controller.dto.RoomDTO;
 import com.codehub.theater_management.controller.dto.SpectacleDTO;
 import com.codehub.theater_management.model.Room;
 import com.codehub.theater_management.model.Spectacle;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface SpectacleMapper {
@@ -14,6 +11,7 @@ public interface SpectacleMapper {
         SpectacleDTO dto = new SpectacleDTO();
         dto.setId(entity.getId());
         dto.setDate(entity.getDate());
+        dto.setNome(entity.getNome());
         dto.setDuration(entity.getDuration());
 
         if (entity.getRoom() != null){
@@ -21,7 +19,6 @@ public interface SpectacleMapper {
         }
         return dto;
     }
-
 
     default Spectacle toEntity(SpectacleDTO dto){
         if (dto == null){
@@ -31,6 +28,7 @@ public interface SpectacleMapper {
         Spectacle spectacle = new Spectacle();
         spectacle.setId(dto.getId());
         spectacle.setDate(dto.getDate());
+        spectacle.setNome(dto.getNome());
         spectacle.setDuration(dto.getDuration());
 
         if (dto.getIdRoom() != null){
@@ -41,4 +39,3 @@ public interface SpectacleMapper {
         return spectacle;
     }
 }
-

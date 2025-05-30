@@ -1,24 +1,62 @@
 package com.codehub.theater_management.controller;
 
+import com.codehub.theater_management.controller.dto.TicketDTO;
+import com.codehub.theater_management.controller.mapper.TicketMapper;
 import com.codehub.theater_management.model.Ticket;
-import com.codehub.theater_management.repository.TicketRepository;
+import com.codehub.theater_management.service.TicketService;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/tickets")
 public class TicketController {
 
     @Autowired
-    TicketRepository repository;
+    private TicketService service;
+
+    @Autowired
+    private TicketMapper mapper;
+
+//    @GetMapping
+//    public ResponseEntity<List<TicketDTO>>listarTodos() {
+//        List<TicketDTO> tickets = service.listar().subList(0, 100);
+//        return ResponseEntity.status(HttpStatus.OK).body(tickets);
+//    }
 
     @GetMapping
-    public List<Ticket> listar() {
-        return repository.findAll().subList(0, 100);
+    public ResponseEntity<List<TicketDTO>> listarTodos(
+            @PageableDefault(size = 100, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+        List<TicketDTO> tickets = service.listar(pageable);
+        return ResponseEntity.ok(tickets);
+    }
+
+    @PostMapping
+    public ResponseEntity<TicketDTO> salvar(@RequestBody TicketDTO dto) {
+        try {
+            TicketDTO salvo = service.salvar(dto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+
+    @PutMapping("/{id}")
+    public TicketDTO atualizar(@PathVariable Long id, @RequestBody TicketDTO dto) {
+        Ticket ticket = mapper.toEntity(dto);
+        return mapper.toDTO(service.atualizar(id, ticket));
+    }
+
+    @DeleteMapping("/{id}")
+    public String deletar(@PathVariable Long id) {
+        return service.deletar(id) ? "Deletado com sucesso." : "Ticket não encontrado.";
     }
 
 

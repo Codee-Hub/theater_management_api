@@ -4,9 +4,11 @@ import com.codehub.theater_management.controller.dto.ArmchairDTO;
 import com.codehub.theater_management.controller.dto.RoomDTO;
 import com.codehub.theater_management.controller.dto.SpectacleDTO;
 import com.codehub.theater_management.controller.mapper.SpectacleMapper;
+import com.codehub.theater_management.model.Client;
 import com.codehub.theater_management.model.Room;
 import com.codehub.theater_management.model.Spectacle;
 import com.codehub.theater_management.model.Theater;
+import com.codehub.theater_management.repository.ClientRepository;
 import com.codehub.theater_management.repository.RoomRepository;
 import com.codehub.theater_management.repository.SpectacleRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -51,5 +53,6 @@ public class SpectacleService {
         repository.delete(spectacle);
         return spectacle;
     }
+
 
 }
