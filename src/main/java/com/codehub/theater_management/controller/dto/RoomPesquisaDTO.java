@@ -4,12 +4,11 @@ import com.codehub.theater_management.model.Theater;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(name = "RoomPesquisa")
-public class RoomPesquisaDTO {
+public record RoomPesquisaDTO(
 
-    private Long id;
-    private Integer roomNumber;
-    private Integer capacity;
-    private Theater idTheater;
-
-
+        Long id,
+        Integer roomNumber,
+        Integer capacity,
+        Theater idTheater
+){
 }
