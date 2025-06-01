@@ -10,5 +10,5 @@ public record RoomPesquisaDTO(
         Integer roomNumber,
         Integer capacity,
         Theater idTheater
-){
+    ){
 }

@@ -1,5 +1,7 @@
 package com.codehub.theater_management.controller.dto;
 
+import com.codehub.theater_management.model.PersonType;
+import com.codehub.theater_management.model.Spectacle;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
@@ -7,7 +9,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public record TicketPricePesquisaDTO(
         Long id,
         Double price,
-        Long idPersonType,
-        Long idSpectacle
-) {
+        PersonType idPersonType,
+        Spectacle idSpectacle
+    ) {
 }
