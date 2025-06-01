@@ -28,13 +28,10 @@ public class Spectacle {
 
     private String nome;
 
-
     @ManyToOne
     @JoinColumn(name = "id_room", nullable = false)
     @JsonIgnore
     private Room room;
-
-
 
     @OneToMany(mappedBy = "spectacle" , cascade = CascadeType.ALL, orphanRemoval = true)
     List<TicketPrice> ticketPrices =  new ArrayList<>();
