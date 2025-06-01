@@ -1,9 +1,9 @@
 package com.codehub.theater_management.controller.dto;
 
 import com.codehub.theater_management.model.Theater;
-import lombok.Data;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-@Data
+@Schema(name = "RoomPesquisa")
 public class RoomPesquisaDTO {
 
     private Long id;
