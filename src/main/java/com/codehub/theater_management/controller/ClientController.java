@@ -28,6 +28,11 @@ public class ClientController {
         return repository.findAll(); //.subList(0, 100) Postman limita usar para teste
     }
 
+    @GetMapping("{email}")
+    public Client deletar(@PathVariable String email) {
+        return repository.findByEmail(email).get();
+    }
+
     @DeleteMapping("{id}")
     public Client deletar(@PathVariable Long id) {
         Client client = repository.findById(id).get();

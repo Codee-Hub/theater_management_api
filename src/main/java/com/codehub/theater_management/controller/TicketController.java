@@ -1,6 +1,7 @@
 package com.codehub.theater_management.controller;
 
 import com.codehub.theater_management.controller.dto.TicketDTO;
+import com.codehub.theater_management.controller.dto.TicketPesquisaDTO;
 import com.codehub.theater_management.controller.mapper.TicketMapper;
 import com.codehub.theater_management.model.Ticket;
 import com.codehub.theater_management.service.TicketService;
@@ -37,6 +38,13 @@ public class TicketController {
         List<TicketDTO> tickets = service.listar(pageable);
         return ResponseEntity.ok(tickets);
     }
+
+    @GetMapping("/client/{clientId}")
+    public ResponseEntity<List<TicketDTO>> getTicketsByClient(@PathVariable Long clientId) {
+        List<TicketDTO> tickets = service.getTicketsByClientId(clientId);
+        return ResponseEntity.ok(tickets);
+    }
+
 
     @PostMapping
     public ResponseEntity<TicketDTO> salvar(@RequestBody TicketDTO dto) {

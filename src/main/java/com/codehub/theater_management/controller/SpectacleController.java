@@ -29,14 +29,21 @@ public class SpectacleController {
             SpectacleDTO salvo = service.salvar(spectacleDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
         }  catch (RuntimeException e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
 
     @GetMapping
     public ResponseEntity<List<SpectacleDTO>> listarTodos() {
-        List<SpectacleDTO> spectacles = service.listar().subList(0, 100);
+        List<SpectacleDTO> spectacles = service.listar();
         return ResponseEntity.ok(spectacles);
+    }
+
+    @GetMapping("{id}")
+    public Spectacle findById(@PathVariable Long id) {
+        Spectacle spectacle = repository.findById(id).get();
+        return spectacle;
     }
 
     @DeleteMapping("{id}")

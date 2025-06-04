@@ -21,7 +21,27 @@ public class TicketService {
     private TicketRepository repository;
 
     @Autowired
+    private SpectacleRepository spectacleRepositoryrepository;
+
+    @Autowired
+    private ArmchairRepository armchairRepositoryrepository;
+
+    @Autowired
+    private ClientRepository clientRepositoryrepository;
+
+    @Autowired
+    private TicketPriceRepository TicketPriceRepository;
+
+    @Autowired
     private TicketMapper mapper;
+
+    public List<TicketDTO> getTicketsByClientId(Long clientId) {
+        List<Ticket> tickets = repository.findTicketsByClientId(clientId);
+        return tickets.stream()
+                .map(mapper::toDTO)
+                .toList();
+    }
+
 
     public List<TicketDTO> listar(Pageable pageable) {
         return repository.findAll(pageable)
@@ -37,17 +57,23 @@ public class TicketService {
     public TicketDTO salvar(TicketDTO ticketDTO) {
         Ticket ticket = mapper.toEntity(ticketDTO);
 
-        Spectacle spectacle = repository.findById(ticketDTO.getSpectacleId())
-                .orElseThrow(()-> new RuntimeException("Spectacle Nao encontrado" + ticketDTO.getSpectacleId())).getSpectacle();
+        System.out.println(ticketDTO.getSpectacleId());
+        System.out.println(ticketDTO.getClientId());
+        System.out.println(ticketDTO.getArmchairId());
+        System.out.println(ticketDTO.getTicketPriceId());
 
-        Client client = repository.findById(ticketDTO.getClientId())
-                .orElseThrow(()-> new RuntimeException("Client Nao encontrado" + ticketDTO.getClientId())).getClient();
 
-        Armchair armchair = repository.findById(ticketDTO.getArmchairId())
-                .orElseThrow(()-> new RuntimeException("Armchair Nao encontrado" + ticketDTO.getArmchairId())).getArmchair();
+        Spectacle spectacle = spectacleRepositoryrepository.findById(ticketDTO.getSpectacleId())
+                .orElseThrow(()-> new RuntimeException("Spectacle Nao encontrado" + ticketDTO.getSpectacleId()));
 
-        TicketPrice ticketPrice = repository.findById(ticketDTO.getTicketPriceId())
-                .orElseThrow(()-> new RuntimeException("TicketPrice Nao encontrado" + ticketDTO.getTicketPriceId())).getTicketPrice();
+        Client client = clientRepositoryrepository.findById(ticketDTO.getClientId())
+                .orElseThrow(()-> new RuntimeException("Client Nao encontrado" + ticketDTO.getClientId()));
+
+        Armchair armchair = armchairRepositoryrepository.findById(ticketDTO.getArmchairId())
+                .orElseThrow(()-> new RuntimeException("Armchair Nao encontrado" + ticketDTO.getArmchairId()));
+
+        TicketPrice ticketPrice = TicketPriceRepository.findById(ticketDTO.getTicketPriceId())
+                .orElseThrow(()-> new RuntimeException("TicketPrice Nao encontrado" + ticketDTO.getTicketPriceId()));
 
         ticket.setSpectacle(spectacle);
         ticket.setClient(client);

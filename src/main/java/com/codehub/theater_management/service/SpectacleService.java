@@ -27,14 +27,21 @@ public class SpectacleService {
     @Autowired
     private SpectacleMapper spectacleMapper;
 
+    @Autowired
+    private RoomRepository roomRepository;
+
 
     public SpectacleDTO salvar(SpectacleDTO spectacleDTO) {
         Spectacle spectacle = spectacleMapper.toEntity(spectacleDTO);
 
-        Room room = repository.findById(spectacleDTO.getIdRoom())
-                .orElseThrow(() -> new RuntimeException("Room não encontrada com ID: " + spectacleDTO.getIdRoom())).getRoom();
+        System.out.println(spectacleDTO.getPrecoBase());
+
+        Room room = roomRepository.findById(spectacleDTO.getIdRoom())
+                .orElseThrow(() -> new RuntimeException("Room não encontrada com ID: " + spectacleDTO.getIdRoom()));
 
         spectacle.setRoom(room);
+
+        System.out.println(spectacle.getPrecoBase());
 
         Spectacle savedSpec = repository.save(spectacle);
 

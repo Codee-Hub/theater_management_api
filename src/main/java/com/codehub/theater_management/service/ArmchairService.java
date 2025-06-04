@@ -22,6 +22,10 @@ public class ArmchairService {
     @Autowired
     public ArmchairMapper armchairMapper;
 
+    public List<Armchair> buscarPoltronasPorSala(Long idSala) {
+        return repository.findAllByRoomId(idSala);
+    }
+
     public ArmchairDTO salvar(ArmchairDTO armchairDTO) {
         Armchair armchair = armchairMapper.toEntity(armchairDTO);
 

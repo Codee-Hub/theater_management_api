@@ -22,7 +22,6 @@ public class Armchair {
 
     @ManyToOne
     @JoinColumn(name = "id_room_area", nullable = false)
-    @JsonIgnore
     private RoomArea roomArea;
 
     @OneToMany(mappedBy = "armchair" , cascade = CascadeType.ALL, orphanRemoval = true)

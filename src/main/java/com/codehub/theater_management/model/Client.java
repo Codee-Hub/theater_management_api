@@ -1,6 +1,7 @@
 package com.codehub.theater_management.model;
 
 import com.codehub.theater_management.model.enums.UserRole;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -34,6 +35,7 @@ public class Client {
 
     private String role; // valores: "ADMIN" ou "USER"
 
+    @JsonIgnore
     @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL, orphanRemoval = true)
     List<Ticket> tickets = new ArrayList<>();
 

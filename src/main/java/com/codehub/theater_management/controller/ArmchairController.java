@@ -1,6 +1,7 @@
 package com.codehub.theater_management.controller;
 
 import com.codehub.theater_management.controller.dto.ArmchairDTO;
+import com.codehub.theater_management.model.Armchair;
 import com.codehub.theater_management.repository.ArmchairRepository;
 import com.codehub.theater_management.service.ArmchairService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,12 @@ public class ArmchairController {
         }
     }
 
+    @GetMapping("/by-room/{roomId}")
+    public ResponseEntity<List<Armchair>> getByRoom(@PathVariable Long roomId) {
+        List<Armchair> armchairs = armchairService.buscarPoltronasPorSala(roomId);
+        return ResponseEntity.ok(armchairs);
+    }
+
 
     @GetMapping
     public ResponseEntity<List<ArmchairDTO>> listarTodos() {
@@ -37,6 +44,10 @@ public class ArmchairController {
         return ResponseEntity.ok(armchairs);
     }
 
-
+    @GetMapping("{id}")
+    public ResponseEntity<Armchair> findById(@PathVariable Long id) {
+        Armchair armchair = repository.findById(id).get();
+        return ResponseEntity.ok(armchair);
+    }
 
 }

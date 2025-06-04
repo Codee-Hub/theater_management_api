@@ -14,7 +14,7 @@ public interface SpectacleMapper {
         dto.setId(entity.getId());
         dto.setDate(entity.getDate());
         dto.setNome(entity.getNome());
-        dto.setDuration(entity.getDuration());
+        dto.setDurationInMinutes(entity.getDurationInMinutes());
 
         if (entity.getRoom() != null){
             dto.setIdRoom(entity.getRoom().getId());
@@ -31,7 +31,8 @@ public interface SpectacleMapper {
         spectacle.setId(dto.getId());
         spectacle.setDate(dto.getDate());
         spectacle.setNome(dto.getNome());
-        spectacle.setDuration(dto.getDuration());
+        spectacle.setDurationInMinutes(dto.getDurationInMinutes());
+        spectacle.setPrecoBase(dto.getPrecoBase());
 
         if (dto.getIdRoom() != null){
             Room room = new Room();

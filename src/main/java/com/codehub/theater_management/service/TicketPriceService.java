@@ -5,6 +5,8 @@ import com.codehub.theater_management.controller.mapper.TicketPriceMapper;
 import com.codehub.theater_management.model.PersonType;
 import com.codehub.theater_management.model.Spectacle;
 import com.codehub.theater_management.model.TicketPrice;
+import com.codehub.theater_management.repository.PersonTypeRepository;
+import com.codehub.theater_management.repository.SpectacleRepository;
 import com.codehub.theater_management.repository.TicketPriceRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +24,23 @@ public class TicketPriceService {
     @Autowired
     public TicketPriceMapper mapper;
 
+    @Autowired
+    public SpectacleRepository spectacleRepository;
+
+    @Autowired
+    public PersonTypeRepository personTypeRepository;
+
     public TicketPriceDTO salvar(TicketPriceDTO ticketPriceDTO) {
         TicketPrice ticketPrice = mapper.toEntity(ticketPriceDTO);
 
-        Spectacle spectacle = repository.findById(ticketPriceDTO.getIdSpectacle())
-                .orElseThrow(()-> new RuntimeException("Spectale Nao encontrado" + ticketPriceDTO.getIdSpectacle())).getSpectacle();
+        System.out.println(ticketPriceDTO.getIdSpectacle());
+        System.out.println(ticketPriceDTO.getIdPersonType());
 
-        PersonType personType = repository.findById(ticketPriceDTO.getIdPersonType())
-                .orElseThrow(()-> new RuntimeException("PersonType Nao encontrado" + ticketPriceDTO.getIdPersonType())).getPersonType();
+        Spectacle spectacle = spectacleRepository.findById(ticketPriceDTO.getIdSpectacle())
+                .orElseThrow(()-> new RuntimeException("Spectale Nao encontrado" + ticketPriceDTO.getIdSpectacle()));
+
+        PersonType personType = personTypeRepository.findById(ticketPriceDTO.getIdPersonType())
+                .orElseThrow(()-> new RuntimeException("PersonType Nao encontrado" + ticketPriceDTO.getIdPersonType()));
 
         ticketPrice.setSpectacle(spectacle);
         ticketPrice.setPersonType(personType);
@@ -45,6 +56,10 @@ public class TicketPriceService {
                 .stream()
                 .map(mapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public TicketPriceDTO buscarPorId(Long id) {
+        return mapper.toDTO(repository.findById(id).get()) ;
     }
 
 

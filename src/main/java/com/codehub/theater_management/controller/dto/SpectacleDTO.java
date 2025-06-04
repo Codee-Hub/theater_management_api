@@ -13,10 +13,10 @@ public class SpectacleDTO {
 
     private Long id;
     private Timestamp date;
-    private LocalTime duration;
+    private Integer durationInMinutes;
     private String nome;
     private Long idRoom;
-
+    private Integer precoBase;
 
     public SpectacleDTO() {
 
@@ -26,7 +26,8 @@ public class SpectacleDTO {
         this.id = spectacle.getId();
         this.date = spectacle.getDate();
         this.nome = spectacle.getNome();
-        this.duration = spectacle.getDuration();
+        this.durationInMinutes = spectacle.getDurationInMinutes();
+        this.precoBase = spectacle.getPrecoBase();
         if (spectacle.getRoom() != null) {
             this.idRoom = spectacle.getRoom().getId();
         }

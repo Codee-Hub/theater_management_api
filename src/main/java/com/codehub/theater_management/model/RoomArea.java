@@ -27,6 +27,7 @@ public class RoomArea {
     @JsonIgnore
     private Room room;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "roomArea", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Armchair> armchairs = new ArrayList<>();
 

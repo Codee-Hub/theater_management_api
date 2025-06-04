@@ -17,25 +17,26 @@ public class Ticket {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
     @JoinColumn(name = "id_spectacle", nullable = false)
+    @JsonIgnore
     private Spectacle spectacle;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_client", nullable = false)
     private Client client;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_armchair", nullable = false)
     private Armchair armchair;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_ticket_price", nullable = false)
     private TicketPrice ticketPrice;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "ticket" , cascade = CascadeType.ALL, orphanRemoval = true)
     List<Payment>  payments =  new ArrayList<>();
 

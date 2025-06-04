@@ -27,6 +27,7 @@ public class TicketPriceController {
             TicketPriceDTO salvo = service.salvar(dto);
             return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
         }catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
@@ -42,6 +43,12 @@ public class TicketPriceController {
         TicketPrice ticketPrice = repository.findById(id).get();
         repository.delete(ticketPrice);
         return ticketPrice;
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<TicketPriceDTO> findById(@PathVariable Long id) {
+        TicketPriceDTO ticketPrices = service.buscarPorId(id);
+        return ResponseEntity.status(HttpStatus.OK).body(ticketPrices);
     }
 
 }
