@@ -5,6 +5,8 @@ import com.codehub.theater_management.controller.dto.TicketPesquisaDTO;
 import com.codehub.theater_management.controller.mapper.TicketMapper;
 import com.codehub.theater_management.model.Ticket;
 import com.codehub.theater_management.service.TicketService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -18,6 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/tickets")
+@Tag(name = "Ticket", description = "Endpoints para gerenciamento de Ticktes dos espetaculos")
 public class TicketController {
 
     @Autowired
@@ -33,6 +36,7 @@ public class TicketController {
 //    }
 
     @GetMapping
+    @Operation(summary = "Listar", description = "Lista todos os tickets")
     public ResponseEntity<List<TicketDTO>> listarTodos(
             @PageableDefault(size = 100, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
         List<TicketDTO> tickets = service.listar(pageable);
@@ -40,6 +44,7 @@ public class TicketController {
     }
 
     @GetMapping("/client/{clientId}")
+    @Operation(summary = "Buscar", description = " consultar todos os ingressos comprados por um cliente específico\n")
     public ResponseEntity<List<TicketDTO>> getTicketsByClient(@PathVariable Long clientId) {
         List<TicketDTO> tickets = service.getTicketsByClientId(clientId);
         return ResponseEntity.ok(tickets);
@@ -47,6 +52,7 @@ public class TicketController {
 
 
     @PostMapping
+    @Operation(summary = "Criar", description = "Cria um ticket")
     public ResponseEntity<TicketDTO> salvar(@RequestBody TicketDTO dto) {
         try {
             TicketDTO salvo = service.salvar(dto);
@@ -57,12 +63,14 @@ public class TicketController {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Atualizar", description = "Atualiza um ticket")
     public TicketDTO atualizar(@PathVariable Long id, @RequestBody TicketDTO dto) {
         Ticket ticket = mapper.toEntity(dto);
         return mapper.toDTO(service.atualizar(id, ticket));
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Deletar", description = "Deleta um ticket")
     public String deletar(@PathVariable Long id) {
         return service.deletar(id) ? "Deletado com sucesso." : "Ticket não encontrado.";
     }

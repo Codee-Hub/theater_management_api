@@ -4,6 +4,8 @@ import com.codehub.theater_management.controller.dto.RoomDTO;
 import com.codehub.theater_management.model.Room;
 import com.codehub.theater_management.repository.RoomRepository;
 import com.codehub.theater_management.service.RoomService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.ServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/rooms")
+@Tag(name = "Room", description = "Endpoints para gerenciamento de Salas")
+
 public class RoomController {
 
     @Autowired
@@ -23,11 +27,10 @@ public class RoomController {
     private RoomService roomService;
 
     @PostMapping
+    @Operation(summary = "Criar", description = "Cria sala")
     public ResponseEntity<Void> salvar(@RequestBody RoomDTO roomDTO, ServletRequest servletRequest) {
-        // Chama o service que salva e retorna o DTO da entidade persistida
         RoomDTO savedRoom = roomService.salvar(roomDTO);
 
-        // Cria a URI com o ID da entidade salva
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(savedRoom.getId())
@@ -37,6 +40,7 @@ public class RoomController {
     }
 
     @GetMapping
+    @Operation(summary = "Listar", description = "Lista as salas")
     public List<Room> listar(){
         return repository.findAll();
     }
