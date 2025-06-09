@@ -1,6 +1,6 @@
 # API de Gerenciamento de Teatro
 
-Este projeto é uma API RESTful robusta para o gerenciamento de um sistema de teatros. Ele permite a gestão de teatros, salas, espetáculos, clientes, ingressos e pagamentos. A API é construída com Java e o framework Spring Boot, utilizando um banco de dados PostgreSQL para a persistência dos dados.
+Este projeto é uma API REST robusta para o gerenciamento de um sistema de teatros. Ele permite a gestão de teatros, salas, espetáculos, clientes, ingressos e pagamentos. A API é construída com Java e o framework Spring Boot, utilizando um banco de dados PostgreSQL para a persistência dos dados.
 
 ---
 
@@ -21,74 +21,25 @@ Este projeto é uma API RESTful robusta para o gerenciamento de um sistema de te
 ## Tecnologias Utilizadas
 
 - Java 21  
-- Spring Boot 3.4.5  
-- Spring Data JPA  
+- Spring Boot 3
+- Spring Data JPA / Hibernate 
 - PostgreSQL  
 - Maven  
 - Lombok  
 - MapStruct  
-- Springdoc OpenAPI (para Swagger UI)
+- Springdoc OpenAPI / Swagger 
 
 ---
 
-## Endpoints da API
+## 📄 Documentação Interativa com Swagger
 
-A API fornece os seguintes endpoints para gerenciar o sistema de teatros:
+Após rodar a aplicação, acesse:
 
-### Teatros
-- `POST /theaters`: Cria um novo teatro.  
-- `GET /theaters`: Lista todos os teatros disponíveis.
+```
+http://localhost:8081/swagger-ui/index.html
+```
 
-### Salas
-- `POST /rooms`: Cria uma nova sala.  
-- `GET /rooms`: Lista todas as salas.
-
-### Áreas da Sala
-- `POST /roomareas`: Cria uma nova área dentro de uma sala.  
-- `GET /roomareas`: Lista todas as áreas de salas.
-
-### Poltronas
-- `POST /armchairs`: Cria uma nova poltrona.  
-- `GET /armchairs`: Lista todas as poltronas.  
-- `GET /armchairs/by-room/{roomId}`: Obtém todas as poltronas de uma sala específica.
-
-### Espetáculos
-- `POST /spectacles`: Cria um novo espetáculo.  
-- `GET /spectacles`: Lista todos os espetáculos.  
-- `GET /spectacles/{id}`: Busca um espetáculo pelo seu ID.  
-- `DELETE /spectacles/{id}`: Deleta um espetáculo.
-
-### Clientes
-- `POST /clients`: Cria um novo cliente.  
-- `GET /clients`: Lista todos os clientes.  
-- `GET /clients/{email}`: Busca um cliente pelo email.  
-- `DELETE /clients/{id}`: Deleta um cliente pelo seu ID.
-
-### Ingressos
-- `POST /tickets`: Cria um novo ingresso.  
-- `GET /tickets`: Lista todos os ingressos com paginação.  
-- `GET /tickets/client/{clientId}`: Consulta todos os ingressos comprados por um cliente específico.  
-- `PUT /tickets/{id}`: Atualiza um ingresso.  
-- `DELETE /tickets/{id}`: Deleta um ingresso.
-
-### Preços de Ingressos
-- `POST /ticketsprices`: Cria um novo preço para um tipo de ingresso de um espetáculo específico.  
-- `GET /ticketsprices`: Lista todos os preços de ingressos.  
-- `GET /ticketsprices/{id}`: Busca um preço de ingresso pelo seu ID.  
-- `DELETE /ticketsprices/{id}`: Deleta um preço de ingresso.
-
-### Pagamentos
-- `POST /payments`: Processa um novo pagamento.
-
-### Métodos de Pagamento
-- `POST /paymentsmethods`: Cria um novo método de pagamento.  
-- `GET /paymentsmethods`: Lista todos os métodos de pagamento.  
-- `DELETE /paymentsmethods/{id}`: Deleta um método de pagamento.
-
-### Tipos de Pessoa
-- `POST /persontypes`: Cria um novo tipo de pessoa (ex: estudante, idoso).  
-- `GET /persontypes`: Lista todos os tipos de pessoa.  
-- `DELETE /persontypes/{id}`: Deleta um tipo de pessoa.
+![Swagger](https://github.com/Codee-Hub/theater_management_api/blob/main/src/imgs/Swagger.PNG)
 
 ---
 
@@ -140,4 +91,9 @@ Clone o repositório:
 ```bash
 git clone https://github.com/codee-hub/theater_management_api.git
 cd theater_management_api
+```
 
+## 👨‍💻 Autor
+
+Desenvolvido por [Kailan Dias (KailanDias)](https://github.com/KailanDias)  
+---
