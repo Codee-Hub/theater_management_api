@@ -1,10 +1,10 @@
-# API de Gerenciamento de Teatro
+# 🎭 API de Gerenciamento de Teatro
 
 Este projeto é uma API REST robusta para o gerenciamento de um sistema de teatros. Ele permite a gestão de teatros, salas, espetáculos, clientes, ingressos e pagamentos. A API é construída com Java e o framework Spring Boot, utilizando um banco de dados PostgreSQL para a persistência dos dados.
 
 ---
 
-## Recursos
+## ⚙️ Recursos
 
 - **Gerenciamento de Teatros**: Crie e liste teatros.
 - **Gerenciamento de Salas**: Crie e liste salas dentro de um teatro.
@@ -18,7 +18,7 @@ Este projeto é uma API REST robusta para o gerenciamento de um sistema de teatr
 
 ---
 
-## Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
 - Java 21  
 - Spring Boot 3
@@ -43,7 +43,7 @@ http://localhost:8081/swagger-ui/index.html
 
 ---
 
-## Schema do Banco de Dados
+## 🧱 Schema do Banco de Dados
 
 O schema do banco de dados foi projetado para suportar as funcionalidades de gerenciamento do teatro. Abaixo estão as tabelas principais e seus relacionamentos, conforme definido no arquivo `comandos-sql.txt`:
 
@@ -61,7 +61,7 @@ O schema do banco de dados foi projetado para suportar as funcionalidades de ger
 
 ---
 
-## Configuração e Instalação
+## 🧰 Configuração e Instalação
 
 ### Pré-requisitos
 
@@ -69,7 +69,7 @@ O schema do banco de dados foi projetado para suportar as funcionalidades de ger
 - Apache Maven  
 - PostgreSQL
 
-### Configuração do Banco de Dados
+###🛠️ Configuração do Banco de Dados
 
 
 
@@ -84,7 +84,7 @@ spring.datasource.username=postgres
 spring.datasource.password=postgres
 ```
 
-## Executando a Aplicação
+## ▶️ Executando a Aplicação
 
 Clone o repositório:
 
