@@ -7,6 +7,9 @@ import com.codehub.theater_management.service.ArmchairService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,8 +47,9 @@ public class ArmchairController {
 
     @GetMapping
     @Operation(summary = "Listar", description = "Listar cadeiras")
-    public ResponseEntity<List<ArmchairDTO>> listarTodos() {
-        List<ArmchairDTO> armchairs = armchairService.listar(); //.subList(0, 100) Postman limita usar para teste
+    public ResponseEntity<List<ArmchairDTO>> listarTodos(
+            @PageableDefault(size = 100, sort = "id", direction = Sort.Direction.ASC)Pageable pageable) {
+        List<ArmchairDTO> armchairs = armchairService.listar(pageable); //.subList(0, 100) Postman limita usar para teste
         return ResponseEntity.ok(armchairs);
     }
 

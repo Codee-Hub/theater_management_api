@@ -6,6 +6,9 @@ import com.codehub.theater_management.repository.ClientRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +32,9 @@ public class ClientController {
 
     @GetMapping
     @Operation(summary = "Listar", description = "Lista todos Clientes")
-    public List<Client> listar() {
+    public List<Client> listar(
+            @PageableDefault(size = 100, sort = "id", direction = Sort.Direction.ASC) Pageable pageable
+    ) {
         return repository.findAll(); //.subList(0, 100) Postman limita usar para teste
     }
 

@@ -8,6 +8,8 @@ import com.codehub.theater_management.repository.ArmchairRepository;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,11 +45,9 @@ public class ArmchairService {
         return armchairMapper.toDTO(saved);
     }
 
-    public List<ArmchairDTO> listar() {
-        return repository.findAll()
-                .stream()
-                .map(ArmchairDTO::new) // Supondo que ArmchairDTO tem um construtor que aceita Armchair
-                .collect(Collectors.toList());
+    public List<ArmchairDTO> listar(Pageable pageable) {
+        Page<Armchair> armchairsPage = repository.findAll(pageable);
+        return armchairsPage.map(armchairMapper::toDTO).getContent();
     }
 
 
