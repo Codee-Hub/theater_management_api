@@ -51,9 +51,10 @@ public class SpectacleService {
 
     }
 
-    public Page<SpectacleDTO> listar(Pageable pageable) {
+    public List<SpectacleDTO> listar(Pageable pageable) {
         return repository.findAll(pageable)
-                .map(SpectacleDTO::new);
+                .map(spectacleMapper::toDTO)
+                .getContent();
     }
 
     public Spectacle deletar(Spectacle  spectacle) {

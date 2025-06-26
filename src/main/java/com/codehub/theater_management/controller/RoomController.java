@@ -1,6 +1,7 @@
 package com.codehub.theater_management.controller;
 
 import com.codehub.theater_management.controller.dto.RoomDTO;
+import com.codehub.theater_management.controller.dto.TicketDTO;
 import com.codehub.theater_management.model.Room;
 import com.codehub.theater_management.repository.RoomRepository;
 import com.codehub.theater_management.service.RoomService;
@@ -8,6 +9,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.ServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -41,8 +45,10 @@ public class RoomController {
 
     @GetMapping
     @Operation(summary = "Listar", description = "Lista as salas")
-    public List<Room> listar(){
-        return repository.findAll();
+    public ResponseEntity<List<RoomDTO>> listar(
+            @PageableDefault(size = 100, sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
+        List<RoomDTO> rooms = roomService.listar(pageable);
+        return ResponseEntity.ok(rooms);
     }
 
 

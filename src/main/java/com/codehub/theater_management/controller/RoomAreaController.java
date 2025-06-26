@@ -7,6 +7,7 @@ import com.codehub.theater_management.service.RoomAreaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,9 +32,13 @@ public class RoomAreaController {
     }
     @GetMapping
     @Operation(summary = "Listar", description = "Lista as Areas das salas")
-    public List<RoomArea> listar() {
-        return RoomAreaRepository.findAll();
+    public ResponseEntity<List<RoomArea>> listar(
+            @PageableDefault(size = 100, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+        List<RoomAreaDTO> roomAreas = roomAreaService.listar(pageable);
+        return ResponseEntity.ok(roomAreas);
     }
+
+
 
 
 }

@@ -1,11 +1,14 @@
 package com.codehub.theater_management.service;
 
 import com.codehub.theater_management.controller.dto.RoomAreaDTO;
+import com.codehub.theater_management.controller.dto.RoomDTO;
+import com.codehub.theater_management.controller.mapper.RoomAreaMapper;
 import com.codehub.theater_management.model.Room;
 import com.codehub.theater_management.model.RoomArea;
 import com.codehub.theater_management.repository.RoomAreaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +18,9 @@ public class RoomAreaService {
 
     @Autowired
     RoomAreaRepository repository;
+
+    @Autowired
+    RoomAreaMapper mapper;
 
     public RoomArea salvar(RoomAreaDTO dto) {
         RoomArea roomArea = new RoomArea();
@@ -31,9 +37,12 @@ public class RoomAreaService {
     }
 
 
-    public List<RoomArea> listar() {
-        return repository.findAll();
+    public List<RoomAreaDTO> listar(Pageable pageable) {
+        return repository.findAll(pageable)
+                .map(mapper::toDTO)
+                .getContent();
     }
+
 
     public RoomArea findById(Long id) {
         return repository.findById(id)
