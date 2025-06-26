@@ -7,6 +7,9 @@ import com.codehub.theater_management.service.TicketPriceService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,9 +42,10 @@ public class TicketPriceController {
 
     @GetMapping
     @Operation(summary = "Listar", description = "Lista todos tickets")
-    public ResponseEntity<List<TicketPriceDTO>> listar() {
-        List<TicketPriceDTO> ticketPrices = service.Listar();
-        return ResponseEntity.status(HttpStatus.OK).body(ticketPrices);
+    public ResponseEntity<List<TicketPriceDTO>> listar(
+            @PageableDefault(size = 100, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+        List<TicketPriceDTO> ticketPrices = service.listar(pageable);
+        return ResponseEntity.ok(ticketPrices);
     }
 
     @DeleteMapping("{id}")

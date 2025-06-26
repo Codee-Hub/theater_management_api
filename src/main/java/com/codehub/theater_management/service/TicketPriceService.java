@@ -10,6 +10,8 @@ import com.codehub.theater_management.repository.SpectacleRepository;
 import com.codehub.theater_management.repository.TicketPriceRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -51,11 +53,10 @@ public class TicketPriceService {
 
     }
 
-    public List<TicketPriceDTO> Listar() {
-        return  repository.findAll()
-                .stream()
+    public List<TicketPriceDTO> listar(Pageable pageable) {
+        return  repository.findAll(pageable)
                 .map(mapper::toDTO)
-                .collect(Collectors.toList());
+                .getContent();
     }
 
     public TicketPriceDTO buscarPorId(Long id) {
