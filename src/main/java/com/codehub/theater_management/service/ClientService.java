@@ -1,6 +1,7 @@
 package com.codehub.theater_management.service;
 
 import com.codehub.theater_management.controller.dto.ClientDTO;
+import com.codehub.theater_management.controller.dto.RoomDTO;
 import com.codehub.theater_management.controller.mapper.ClientMapper;
 import com.codehub.theater_management.model.Client;
 import com.codehub.theater_management.repository.ClientRepository;
@@ -24,14 +25,14 @@ public class ClientService {
     }
 
     public List<ClientDTO> listar(Pageable pageable) {
-        Page<Client> clientPage = repository.findAll(pageable);
-        return clientPage.map(mapper::toDTO).getContent();
+        return repository.findAll(pageable)
+                .map(mapper::toDTO)
+                .getContent();
     }
 
     public Client deletar(Client client) {
         repository.delete(client);
         return client;
     }
-
 
 }
