@@ -13,6 +13,8 @@ import com.codehub.theater_management.repository.RoomRepository;
 import com.codehub.theater_management.repository.SpectacleRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,11 +51,9 @@ public class SpectacleService {
 
     }
 
-    public List<SpectacleDTO> listar(){
-        return repository.findAll()
-                .stream()
-                .map(SpectacleDTO::new)
-                .collect(Collectors.toList());
+    public Page<SpectacleDTO> listar(Pageable pageable) {
+        return repository.findAll(pageable)
+                .map(SpectacleDTO::new);
     }
 
     public Spectacle deletar(Spectacle  spectacle) {

@@ -8,6 +8,10 @@ import com.codehub.theater_management.service.SpectacleService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,8 +44,9 @@ public class SpectacleController {
 
     @GetMapping
     @Operation(summary = "Listar", description = "Lista todos espetáculo")
-    public ResponseEntity<List<SpectacleDTO>> listarTodos() {
-        List<SpectacleDTO> spectacles = service.listar();
+    public ResponseEntity<Page<SpectacleDTO>> listarTodos(
+            @PageableDefault(size = 100, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+        Page<SpectacleDTO> spectacles = service.listar(pageable);
         return ResponseEntity.ok(spectacles);
     }
 

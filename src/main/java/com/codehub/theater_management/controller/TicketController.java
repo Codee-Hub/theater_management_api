@@ -29,11 +29,6 @@ public class TicketController {
     @Autowired
     private TicketMapper mapper;
 
-//    @GetMapping
-//    public ResponseEntity<List<TicketDTO>>listarTodos() {
-//        List<TicketDTO> tickets = service.listar().subList(0, 100);
-//        return ResponseEntity.status(HttpStatus.OK).body(tickets);
-//    }
 
     @GetMapping
     @Operation(summary = "Listar", description = "Lista todos os tickets")
